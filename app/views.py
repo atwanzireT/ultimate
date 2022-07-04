@@ -3,6 +3,9 @@ from django.shortcuts import render
 from .models import *
 from datetime import datetime
 from django.utils import timezone
+from .forms import Register_LandForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -27,3 +30,20 @@ def index(request):
         "clients_report":clients_report,
     }
     return render(request, 'index.html', dic)
+
+def registration (request):
+    form = Register_LandForm(request.POST or None, request.FILES or None)
+    if request.method =='POST':
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.registedBy = request.user
+            obj.save()  #save data to table
+            form = Register_LandForm
+            messages.success(request,"Registration Successful")
+            return HttpResponseRedirect('/')
+    form = Register_LandForm
+    context={'form':form}
+    return render(request, 'registration.html', context)
+
+def registerCard(request):
+    return render(request, 'registercard.html')

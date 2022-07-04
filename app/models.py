@@ -1,9 +1,6 @@
-from distutils.command.upload import upload
-from email.mime import image
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 # Create your models here.
 
 # Location models
@@ -37,10 +34,15 @@ class Plot(models.Model):
 
 # registration
 class Plot_Owner(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(default='No bio ...')
+    avatar = models.ImageField(default='no-image.png', upload_to='avatars')
+    usertype = models.CharField(max_length=50, default='client', editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.user
+        return self.user.username
 
 class Registration(models.Model):
     plot = models.ForeignKey(Plot, on_delete=models.CASCADE)
@@ -54,7 +56,7 @@ class Registration(models.Model):
     def __str__(self) -> str:
         return self.plot
      
-class Feedback(models.Model):
+class Notification(models.Model):
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     body = models.TextField()
@@ -65,10 +67,11 @@ class Feedback(models.Model):
     def __str__(self) -> str:
         return self.title
 
-class Appointments(models.Model):
+class Appointment(models.Model):
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     detail = models.TextField()
+    book_day = models.DateTimeField(default=timezone.now)
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -76,7 +79,7 @@ class Appointments(models.Model):
     def __str__(self) -> str:
         return self.title
 
-class Updates(models.Model):
+class Update(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to = "updates")
     detail = models.TextField()

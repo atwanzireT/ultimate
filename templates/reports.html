@@ -2,7 +2,7 @@
             <div class="col-12">
                 <div class="card">
   
-                  <div class="filter">
+                  <!-- <div class="filter">
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                       <li class="dropdown-header text-start">
@@ -13,7 +13,7 @@
                       <li><a class="dropdown-item" href="#">This Month</a></li>
                       <li><a class="dropdown-item" href="#">This Year</a></li>
                     </ul>
-                  </div>
+                  </div> -->
   
                   <div class="card-body">
                     <h5 class="card-title">Reports <span>/Today</span></h5>
@@ -25,18 +25,18 @@
                       document.addEventListener("DOMContentLoaded", () => {
                         new ApexCharts(document.querySelector("#reportsChart"), {
                           series: [{
-                            name: 'Sales',
-                            data: [31, 40, 28, 51, 42, 82, 56],
+                            name: 'Appointments',
+                            data: [{{appointments_report}}],
                           }, {
-                            name: 'Revenue',
-                            data: [11, 32, 45, 32, 34, 52, 41]
+                            name: 'Clients',
+                            data: [{{clients_report}}],
                           }, {
-                            name: 'Customers',
-                            data: [15, 11, 32, 18, 9, 24, 11]
+                            name: 'Feedback',
+                            data: [{{feedback_report}}],
                           }],
                           chart: {
                             height: 350,
-                            type: 'area',
+                            type: 'bar',
                             toolbar: {
                               show: false
                             },

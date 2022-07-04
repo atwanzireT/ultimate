@@ -11,12 +11,6 @@ GENDER_CHOICE = (
     ("female", "female"),
 )
 
-Third_Party_Type = (
-    ("", "Select Third Party Access"),
-    ("client", "client"),
-    ("clerk", "clerk"),
-)
-
 class EditUserForm(UserChangeForm):
     email = forms.EmailField()
     first_name = forms.CharField(max_length=50)
@@ -26,7 +20,6 @@ class EditUserForm(UserChangeForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICE)
     address = forms.CharField(max_length=50)
     is_active = forms.BooleanField(default=False)
-    Third_Party_Type = forms.ChoiceField(choice = Third_Party_Type)
 
     class Meta:
         model = User

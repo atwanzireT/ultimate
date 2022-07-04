@@ -4,5 +4,13 @@ from . import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('registration/', views.registration, name='registration'),	
-    path('registerdashboard/', views.registerDashboard, name='registerdashboard'),	
+    path('registerdashboard/registerdashboard/', views.registerDashboard, name='registerdashboard'),
+    path('registerdashboard/register_district/', views.register_district, name='register_district'),
+    path('registerdashboard/register_village/', views.register_village, name='register_village'),
+    path('registerdashboard/register_country/', views.register_country, name='register_country'),
+    path('registerdashboard/register_plot/', views.register_plot, name='register_plot'),
+    path('registerdashboard/register_plot_owner/', views.register_plot_owner, name='register_plot_owner'),
+    path('notification/', views.notification, name='notificaton'),
+    path('appointment/', views.appointment, name='appointment'),
+    path('update/', views.update, name='update'),
 ]

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import *
 from datetime import datetime
 from django.utils import timezone
-from .forms import AppointmentForm, NotificationForm, Register_LandForm, Register_Plot_Owner, Register_Update, Register_country, Register_district, Register_village
+from .forms import AppointmentForm, NotificationForm, Register_LandForm, Register_PlotForm, Register_Plot_OwnerForm, Create_UpdateForm, Register_countryForm, Register_districtForm, Register_villageForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
@@ -49,51 +49,51 @@ def registerDashboard(request):
     return render(request, 'registerdashboard.html')
 
 def register_country (request):
-    form = Register_country(request.POST or None, request.FILES or None)
+    form = Register_countryForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
             form.save()  #save data to table
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = Register_country
+    form = Register_countryForm
     context={'form':form}
     return render(request, 'register_country.html', context)
 
-def register_country (request):
-    form = Register_country(request.POST or None, request.FILES or None)
-    if request.method =='POST':
-        if form.is_valid():
-            form.save()  #save data to table
-            messages.success(request,"Registration Successful")
-            return HttpResponseRedirect('/')
-    form = Register_country
-    context={'form':form}
-    return render(request, 'register_country.html', context)
+# def register_country (request):
+#     form = Register_country(request.POST or None, request.FILES or None)
+#     if request.method =='POST':
+#         if form.is_valid():
+#             form.save()  #save data to table
+#             messages.success(request,"Registration Successful")
+#             return HttpResponseRedirect('/')
+#     form = Register_country
+#     context={'form':form}
+#     return render(request, 'register_country.html', context)
 
 def register_district(request):
-    form = Register_district(request.POST or None, request.FILES or None)
+    form = Register_districtForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
             form.save()  #save data to table
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = Register_district
+    form = Register_districtForm
     context={'form':form}
     return render(request, 'register_district.html', context)
 
 def register_village(request):
-    form = Register_village(request.POST or None, request.FILES or None)
+    form = Register_villageForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
             form.save()  #save data to table
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = Register_village
+    form = Register_villageForm
     context={'form':form}
     return render(request, 'register_village.html', context)
 
 def register_plot(request):
-    form = register_plot(request.POST or None, request.FILES or None)
+    form = Register_PlotForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
             form.save()  #save data to table
@@ -104,13 +104,13 @@ def register_plot(request):
     return render(request, 'register_plot.html', context)
 
 def register_plot_owner(request):
-    form = register_plot_owner(request.POST or None, request.FILES or None)
+    form =  Register_Plot_OwnerForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
             form.save()  #save data to table
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = Register_Plot_Owner
+    form = Register_Plot_OwnerForm
     context={'form':form}
     return render(request, 'register_plot_owner.html', context)
 
@@ -118,7 +118,10 @@ def notification(request):
     form = NotificationForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
-            form.save()  #save data to table
+            obj = form.save(commit=False)
+            obj.createdBy = request.user
+            obj.save()  #save data to table
+            form = Notification
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
     form = NotificationForm
@@ -129,7 +132,10 @@ def appointment(request):
     form = AppointmentForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
-            form.save()  #save data to table
+            obj = form.save(commit=False)
+            obj.createdBy = request.user
+            obj.save()  #save data to table
+            form = AppointmentForm
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
     form = AppointmentForm
@@ -137,12 +143,15 @@ def appointment(request):
     return render(request, 'appointment.html', context)
 
 def update(request):
-    form = Register_Update(request.POST or None, request.FILES or None)
+    form = Create_UpdateForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
-            form.save()  #save data to table
+            obj = form.save(commit=False)
+            obj.createdBy = request.user
+            obj.save()  #save data to table
+            form = Create_UpdateForm
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = Register_district
+    form = Register_districtForm
     context={'form':form}
     return render(request, 'update.html', context)

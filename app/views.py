@@ -99,7 +99,7 @@ def register_plot(request):
             form.save()  #save data to table
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/')
-    form = register_plot
+    form = Register_PlotForm
     context={'form':form}
     return render(request, 'register_plot.html', context)
 

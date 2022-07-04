@@ -9,3 +9,6 @@ def login(request):
 def logout_func(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def logout_page(request):
+    return render(request, 'logout_user.html')

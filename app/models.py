@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -33,10 +34,14 @@ class Plot(models.Model):
         return self.plot_number
 
 # registration
-class Plot_Owner(models.Model):
+class UserModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(default='No bio ...')
-    avatar = models.ImageField(default='no-image.png', upload_to='avatars')
+    avatar = models.ImageField(upload_to = "users")
+    usertype = models.CharField(max_length=50, default='client', editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+class Plot_Owner(models.Model):
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
     usertype = models.CharField(max_length=50, default='client', editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -45,9 +50,7 @@ class Plot_Owner(models.Model):
         return self.user.username
 
 class Clerk(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(default='No bio ...')
-    avatar = models.ImageField(default='no-image.png', upload_to='clerks')
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
     usertype = models.CharField(max_length=50, default='clerk', editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

@@ -41,12 +41,17 @@ class Register_PlotForm(forms.ModelForm):
 class Register_ClerkForm(forms.ModelForm):
     class Meta:
         model = Clerk
-        fields = ('user', 'bio', 'avatar')
+        fields = ('user',)
+
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ('avatar',)
 
 class Register_Plot_OwnerForm(forms.ModelForm):
     class Meta:
         model = Plot_Owner
-        fields = ('user', 'bio', 'avatar')
+        fields = ('user',)
 
 
 class NotificationForm(forms.ModelForm):

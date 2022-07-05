@@ -10,10 +10,13 @@
     }
 
     input[type=text],
-    input[type=file],
+    input[type =file],
+    input[type = email],
+    input[type = password],
+    input,
     select,
     textarea {
-        width: 100%;
+        width: 90%;
         padding: 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -79,40 +82,40 @@
         }
     }
 
-    form ul li {
+    ul li {
         list-style: none;
         text-align: left;
-        display: none;
     }
 </style>
-{% include 'topbar.html' %}
-{% include 'sidebar.html' %}
-<main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Register User</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Register User</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section dashboard">
-        <div class="row card">
-            <!-- Left side columns -->
-            <div class="col">
-                <div class="row">
-                    <form action="" method="post" class="signin-form" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{form.as_p}}
-                        <div class="text-center">
-                            <br>
-                            <button class="btn btn-style btn-outline-primary m-2" style="width: 80%;">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div><!-- End Left side columns -->
-        </div>
-    </section>
-    {% endblock content %}
+    {% include 'topbar.html' %}
+    {% include 'sidebar.html' %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Register Clerk</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Edit Profile</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        
+        <section class="section dashboard">
+            <div class="row card">
+                <!-- Left side columns -->
+                <div class="col">
+                    <div class="row">
+                        <form action="" method="post" class="signin-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <div class="text-center">
+                                <br>
+                                <button class="btn btn-style btn-outline-primary m-2" style="width: 80%;">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- End Left side columns -->
+            </div>
+        </section>
+{% endblock content %}
+    	

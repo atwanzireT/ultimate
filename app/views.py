@@ -7,6 +7,7 @@ from .forms import AppointmentForm, NotificationForm, Register_ClerkForm, Regist
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
 
 
@@ -127,7 +128,7 @@ def register_plot_owner(request):
     context={'form':form}
     return render(request, 'register_plot_owner.html', context)
 
-@login_required(login_url='/profile/login/')
+@permission_required('auth.view_user')
 def register_Clerk(request):
     form =  Register_ClerkForm(request.POST or None, request.FILES or None)
     if request.method =='POST':

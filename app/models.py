@@ -44,6 +44,17 @@ class Plot_Owner(models.Model):
     def __str__(self) -> str:
         return self.user.username
 
+class Clerk(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(default='No bio ...')
+    avatar = models.ImageField(default='no-image.png', upload_to='clerks')
+    usertype = models.CharField(max_length=50, default='clerk', editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.user.username
+
 class Registration(models.Model):
     plot = models.ForeignKey(Plot, on_delete=models.CASCADE)
     secret_code = models.UUIDField(unique=True)

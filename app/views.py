@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import *
 from datetime import datetime
 from django.utils import timezone
-from .forms import AppointmentForm, NotificationForm, Register_LandForm, Register_PlotForm, Register_Plot_OwnerForm, Create_UpdateForm, Register_countryForm, Register_districtForm, Register_villageForm
+from .forms import AppointmentForm, NotificationForm, Register_ClerkForm, Register_LandForm, Register_PlotForm, Register_Plot_OwnerForm, Create_UpdateForm, Register_countryForm, Register_districtForm, Register_villageForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -126,6 +126,18 @@ def register_plot_owner(request):
     form = Register_Plot_OwnerForm
     context={'form':form}
     return render(request, 'register_plot_owner.html', context)
+
+@login_required(login_url='/profile/login/')
+def register_Clerk(request):
+    form =  Register_ClerkForm(request.POST or None, request.FILES or None)
+    if request.method =='POST':
+        if form.is_valid():
+            form.save()  #save data to table
+            messages.success(request,"Registration Successful")
+            return HttpResponseRedirect('/success/')
+    form = Register_ClerkForm
+    context={'form':form}
+    return render(request, 'register_clerk.html', context)
 
 @login_required(login_url='/profile/login/')
 def notification(request):

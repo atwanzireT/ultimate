@@ -78,11 +78,16 @@ class Notification(models.Model):
         return self.title
 
 class Appointment(models.Model):
+    # COMPLETE_STATUS = (
+    #     ("1": 'completed'),
+    #     ("0": 'not-completed')
+    # )
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     detail = models.TextField()
     book_day = models.DateTimeField(default=timezone.now)
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    # completed = models.CharField(choices=COMPLETE_STATUS, default="")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

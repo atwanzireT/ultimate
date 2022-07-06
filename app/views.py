@@ -1,5 +1,6 @@
 from http import client
 from django.shortcuts import render
+from matplotlib.style import context
 from .models import *
 from datetime import datetime
 from django.utils import timezone
@@ -189,3 +190,11 @@ def create_update(request):
 @login_required(login_url='/profile/login/')
 def success_main(request):
     return render(request, 'success_main.html')
+
+@login_required(login_url='/profile/login/')
+def appointmentList(request):
+    appointment = Appointment.objects.all()
+    context = {
+        "appointment":appointment,
+    }
+    return render(request, 'appointments.html', context)

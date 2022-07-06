@@ -1,7 +1,9 @@
-from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+import uuid
+
+
 # Create your models here.
 
 # Location models
@@ -34,14 +36,8 @@ class Plot(models.Model):
         return self.plot_number
 
 # registration
-class UserModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to = "users")
-    usertype = models.CharField(max_length=50, default='client', editable=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
 class Plot_Owner(models.Model):
-    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     usertype = models.CharField(max_length=50, default='client', editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -50,7 +46,7 @@ class Plot_Owner(models.Model):
         return self.user.username
 
 class Clerk(models.Model):
-    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     usertype = models.CharField(max_length=50, default='clerk', editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -60,7 +56,7 @@ class Clerk(models.Model):
 
 class Registration(models.Model):
     plot = models.ForeignKey(Plot, on_delete=models.CASCADE)
-    secret_code = models.UUIDField(unique=True)
+    secret_code = models.UUIDField(unique=True,  default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(Plot_Owner, on_delete=models.CASCADE)
     registedBy = models.ForeignKey(User, on_delete=models.CASCADE)
     agreement_document = models.FileField(help_text="Agreement to the plot of Land Scanned")
@@ -68,7 +64,7 @@ class Registration(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.plot
+        return self.plot.plot_number
      
 class Notification(models.Model):
     title = models.CharField(max_length=100)

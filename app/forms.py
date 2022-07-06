@@ -43,11 +43,6 @@ class Register_ClerkForm(forms.ModelForm):
         model = Clerk
         fields = ('user',)
 
-class UserModelForm(forms.ModelForm):
-    class Meta:
-        model = UserModel
-        fields = ('avatar',)
-
 class Register_Plot_OwnerForm(forms.ModelForm):
     class Meta:
         model = Plot_Owner

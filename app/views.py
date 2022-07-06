@@ -148,12 +148,13 @@ def notification(request):
             obj = form.save(commit=False)
             obj.createdBy = request.user
             obj.save()  #save data to table
-            form = Notification
+            form = NotificationForm
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/success_main/')
     form = NotificationForm
     context={'form':form}
     return render(request, 'notify.html', context)
+
 
 @login_required(login_url='/profile/login/')
 def appointment(request):

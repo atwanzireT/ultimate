@@ -89,33 +89,6 @@
 </style>
     {% include 'topbar.html' %}
     {% include 'sidebar.html' %}
-    <main id="main" class="main">
-        <div class="pagetitle">
-            <h1>Register Clerk</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Edit Profile</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
-        
-        <section class="section dashboard">
-            <div class="row card">
-                <!-- Left side columns -->
-                <div class="col">
-                    <div class="row">
-                        <form action="" method="post" class="signin-form" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{form.as_p}}
-                            <div class="text-center">
-                                <br>
-                                <button class="btn btn-style btn-outline-primary m-2" style="width: 80%;">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- End Left side columns -->
-            </div>
-        </section>
+    {% include 'editprofileform.html' %}
 {% endblock content %}
     	

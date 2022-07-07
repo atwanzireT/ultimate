@@ -152,11 +152,20 @@ def notification(request):
             obj.createdBy = request.user
             obj.save()  #save data to table
             form = NotificationForm
-            subject = "Ultimate Notification"
-            message = f"{user.username}, Thank you for contacting us. \n We will get to you shortly."
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email,]
-            send_mail(subject, message, email_from, recipient_list)
+            try:
+                subject = "Ultimate Notification"
+                message = f"{user.username}, Thank you for contacting us. \n We will get to you shortly."
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email, ]
+                send_mail(
+                    subject, 
+                    message, 
+                    email_from, 
+                    recipient_list,
+                    fail_silently=False,
+                )
+            except:
+                pass
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/success_main/')
     form = NotificationForm

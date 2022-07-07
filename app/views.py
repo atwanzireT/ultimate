@@ -1,4 +1,5 @@
 from http import client
+from django.conf import settings
 from django.shortcuts import render
 from matplotlib.style import context
 from .models import *
@@ -9,7 +10,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
-
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -146,10 +147,16 @@ def notification(request):
     form = NotificationForm(request.POST or None, request.FILES or None)
     if request.method =='POST':
         if form.is_valid():
+            user = request.user
             obj = form.save(commit=False)
             obj.createdBy = request.user
             obj.save()  #save data to table
             form = NotificationForm
+            subject = "Ultimate Notification"
+            message = f"{user.username}, Thank you for contacting us. \n We will get to you shortly."
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email,]
+            send_mail(subject, message, email_from, recipient_list)
             messages.success(request,"Registration Successful")
             return HttpResponseRedirect('/success_main/')
     form = NotificationForm

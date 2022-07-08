@@ -2,6 +2,7 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+      {% if user.profile.user_type != "plot_owner" %}
 
       <li class="nav-item">
         <a class="nav-link " href="/">
@@ -9,13 +10,14 @@
           <span>Dashboard</span>
         </a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link " href="/profile/register">
           <i class="bi bi-person-plus"></i>
           <span>Create User</span>
         </a>
       </li>
+      {% endif %}
+
       <!-- End Dashboard Nav -->
       <li class="nav-heading">Pages</li>
 
@@ -32,14 +34,14 @@
           <span>Notify Ultimate</span>
         </a>
       </li><!-- End Contact Page Nav -->
-      {% if user.user_type != "client" %}
+      {% if user.profile.user_type != "plot_owner" %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="/create_update/">
           <i class="bi bi-envelope"></i>
           <span>Update Ultimate People</span>
         </a>
       </li>
-      {% endif %}}
+      {% endif %}
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="/make_appointment/">
@@ -49,7 +51,7 @@
       </li>
 
       
-      {% if user.user_type != "client" %}
+      {% if user.profile.user_type != "plot_owner" %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="/registerdashboard/">
           <i class="bi bi-card-list"></i>

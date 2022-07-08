@@ -2,7 +2,14 @@
 {% block content %}
     {% include 'topbar.html' %}
     {% include 'sidebar.html' %}
+{% if user.profile.user_type != "plot_owner" %}
     {% include 'dashboard_cards.html' %}
-   
+{% else %}
+<main id="main" class="main">
+<div>
+<h1 class="text-center m-5" style="margin-top: 150px;">No Access</h1>
+</div>
+</main>
+{% endif %}
 {% endblock content %}
     

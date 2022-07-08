@@ -86,6 +86,7 @@
 </style>
     {% include 'topbar.html' %}
     {% include 'sidebar.html' %}
+{% if user.profile.user_type != "plot_owner" %}
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Register Village</h1>
@@ -115,5 +116,12 @@
                 </div><!-- End Left side columns -->
             </div>
         </section>
+        {% else %}
+        <main id="main" class="main">
+        <div>
+        <h1 class="text-center m-5" style="margin-top: 150px;">No Access</h1>
+        </div>
+        </main>
+        {% endif %}
 {% endblock content %}
     	

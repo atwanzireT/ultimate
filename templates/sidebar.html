@@ -32,18 +32,15 @@
           <span>Notify Ultimate</span>
         </a>
       </li><!-- End Contact Page Nav -->
-
+      {% if user.user_type != "client" %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="/create_update/">
           <i class="bi bi-envelope"></i>
           <span>Update Ultimate People</span>
         </a>
       </li>
-      
-      {% if user %}
-        
-      {% endif %}
-        
+      {% endif %}}
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="/make_appointment/">
           <i class="bi bi-envelope"></i>
@@ -51,7 +48,8 @@
         </a>
       </li>
 
-
+      
+      {% if user.user_type != "client" %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="/registerdashboard/">
           <i class="bi bi-card-list"></i>
@@ -65,7 +63,8 @@
           <span>Land Registration</span>
         </a>
       </li><!-- End Register Page Nav -->
-
+      {% endif %}
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="/profile/logout/">
           <i class="bi bi-box-arrow-in-left"></i>

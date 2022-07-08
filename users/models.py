@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
-class User(AbstractUser):
+class UserProfile(models.Model):
     GENDER_CHOICE = (
         ("", "Select Gender"),
         ("male", "male"),
@@ -17,21 +17,17 @@ class User(AbstractUser):
         ("clerk", "clerk")
     )
     # add additional fields here'
-    username = models.CharField(max_length = 50, unique = True)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    # username = models.CharField(max_length = 50, unique = True)
     avatar = models.ImageField(upload_to='avatar/%Y/%m/%d', blank=True)
-    email = models.EmailField(_("Email Address"), unique=True)
-    bio = models.TextField(max_length=500)
+    email = models.EmailField(_("Email Address"), unique=True, blank=True)
     about = models.TextField(default="No About ...")
-    gender = models.CharField(choices=GENDER_CHOICE)
-    user_type = models.CharField(choices=USERTYPE_CHOICE)
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    gender = models.CharField(choices=GENDER_CHOICE, max_length=30)
+    user_type = models.CharField(choices=USERTYPE_CHOICE, max_length=30)
+    twitter = models.CharField(max_length=3000, null=True, blank=True)
+    facebook = models.CharField(max_length=3000, null=True, blank=True)
+    website = models.CharField(max_length=3000, null=True, blank=True)
 
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS  = ['username']
-
-    class Meta(AbstractUser.Meta):
-       swappable = 'AUTH_USER_MODEL'
 
     def __str__(self) -> str:
         return self.username

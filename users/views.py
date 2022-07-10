@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http.response import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm
+from .forms import *
 
 # Create your views here.
 def login(request):
@@ -33,3 +33,7 @@ class UserEditView(generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+class ProfileUpdate(generic.UpdateView):
+	form_class = ProfileForm
+	template_name = "registration/profile_update.html"
+	success_url = reverse_lazy('success_main')

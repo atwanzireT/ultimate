@@ -21,9 +21,9 @@ def logout_func(request):
 def logout_page(request):
     return render(request, 'logout_user.html')
 
-def Profile(request, id):
+def Profile(request):
 	user = request.user
-	registration = Registration.objects.filter(owner_id = user.id)
+	registration = Registration.objects.filter(owner_id__user_id = user.id)
 	context = {
 		"registration":registration,
 	}

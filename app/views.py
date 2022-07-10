@@ -5,7 +5,7 @@ from matplotlib.style import context
 from .models import *
 from datetime import datetime
 from django.utils import timezone
-from .forms import AppointmentForm, NotificationForm, Register_ClerkForm, Register_LandForm, Register_PlotForm, Register_Plot_OwnerForm, Create_UpdateForm, Register_countryForm, Register_districtForm, Register_villageForm
+from .forms import *
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required

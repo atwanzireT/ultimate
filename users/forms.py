@@ -26,4 +26,4 @@ class EditUserForm(UserChangeForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("avatat", "about", "address", "email", "nationality", "phonenumber", "gender", "twitter", "facebook", "linkedin", "instagram")
+        fields = ("avatar", "about", "address", "email", "nationality", "phonenumber", "gender", "twitter", "facebook", "linkedin", "instagram")

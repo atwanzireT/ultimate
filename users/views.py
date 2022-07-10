@@ -38,3 +38,7 @@ class ProfileUpdate(generic.UpdateView):
 	form_class = ProfileForm
 	template_name = "registration/profile_update.html"
 	success_url = reverse_lazy('success_main')
+
+	def get_object(self):
+		return self.request.user
+		

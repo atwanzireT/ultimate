@@ -30,7 +30,12 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
+            
+            {% if user.profile.avatar.url %}
+              <img src="{{user.profile.avatar.url}}" alt="Profile" class="rounded-circle">
+            {% else %}
+              <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Profile" class="rounded-circle">
+            {% endif %}
             <span class="d-none d-md-block dropdown-toggle ps-2">{{user.username}}</span>
           </a><!-- End Profile Iamge Icon -->
 

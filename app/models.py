@@ -36,28 +36,28 @@ class Plot(models.Model):
         return self.plot_number
 
 # registration
-class Plot_Owner(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    usertype = models.CharField(max_length=50, default='client', editable=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+# class Plot_Owner(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     usertype = models.CharField(max_length=50, default='client', editable=False)
+#     created = models.DateTimeField(auto_now_add=True)
+#     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self) -> str:
-        return self.user.username
+#     def __str__(self) -> str:
+#         return self.user.username
 
-class Clerk(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    usertype = models.CharField(max_length=50, default='clerk', editable=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+# class Clerk(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     usertype = models.CharField(max_length=50, default='clerk', editable=False)
+#     created = models.DateTimeField(auto_now_add=True)
+#     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self) -> str:
-        return self.user.username
+#     def __str__(self) -> str:
+#         return self.user.username
 
 class Registration(models.Model):
     plot = models.ForeignKey(Plot, on_delete=models.CASCADE)
     secret_code = models.UUIDField(unique=True,  default=uuid.uuid4, editable=False)
-    owner = models.ForeignKey(Plot_Owner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     registedBy = models.ForeignKey(User, on_delete=models.CASCADE)
     agreement_document = models.FileField(help_text="Agreement to the plot of Land Scanned")
     created = models.DateTimeField(auto_now_add=True)

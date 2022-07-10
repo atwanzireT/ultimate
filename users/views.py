@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.contrib.auth import logout
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -7,6 +8,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.http.response import HttpResponse, HttpResponseRedirect
 from .forms import *
+from app.models import * 
 
 # Create your views here.
 def login(request):
@@ -19,8 +21,13 @@ def logout_func(request):
 def logout_page(request):
     return render(request, 'logout_user.html')
 
-def Profile(request):
-	return render(request, 'profile.html')
+def Profile(request, id):
+	user = request.user
+	registration = Registration.objects.filter(owner_id = user.id)
+	context = {
+		"registration":registration,
+	}
+	return render(request, 'profile.html', context)
 class UserRegistrationView(generic.CreateView):
 	form_class = SignupForm
 	template_name = 'registration/registration.html'

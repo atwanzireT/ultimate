@@ -10,4 +10,5 @@ urlpatterns = [
     path('profile', views.Profile, name='profile'),
     path('<int:pk>/edit_profile', UserEditView.as_view(), name = "edit_profile"),
     path('password/', auth_views.PasswordChangeView.as_view(template_name = "edit_password.html")),
+    path('profile_update', ProfileUpdate.as_view, name="profile_update"),
 ]

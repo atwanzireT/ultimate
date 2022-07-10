@@ -33,6 +33,7 @@ class UserEditView(generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+		
 class ProfileUpdate(generic.UpdateView):
 	form_class = ProfileForm
 	template_name = "registration/profile_update.html"

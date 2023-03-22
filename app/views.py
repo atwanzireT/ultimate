@@ -1,7 +1,6 @@
 from http import client
 from django.conf import settings
 from django.shortcuts import render
-from matplotlib.style import context
 from .models import *
 from datetime import datetime
 from django.utils import timezone

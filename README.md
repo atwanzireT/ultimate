@@ -24,10 +24,10 @@ To get started follow the following steps.
 - pip install -r requirements.txt
 
 #### Login Page
-![Alt text](images/dashboard.PNG "Login Page")
+![Alt text](images/login.PNG "Login Page")
 
 <!-- <img src="https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNHIDuw2yyVj23GKkTNsNQy5p-iNQaa9KjlGEAm" alt="alt text" title="image Title" /> -->
 
 
 #### Dashboard Page
-![Alt text](images/login.PNG "Dashboard Page")
+![Alt text](images/dashboard.PNG "Dashboard Page")

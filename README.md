@@ -9,7 +9,7 @@ To get started follow the following steps.
 #### Create a Visual Enviroment.
 
 - python -m venv env
-More Info : https://docs.python.org/3/library/venv.html
+- More Info : https://docs.python.org/3/library/venv.html
 
 #### Activate the Enviroment
 

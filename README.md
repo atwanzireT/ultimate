@@ -24,10 +24,10 @@ To get started follow the following steps.
 - pip install -r requirements.txt
 
 #### Login Page
-![Alt text](https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNHIDuw2yyVj23GKkTNsNQy5p-iNQaa9KjlGEAm"Login Page")
+![Alt text](https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNHIDuw2yyVj23GKkTNsNQy5p-iNQaa9KjlGEAm "Login Page")
 
-<img src="https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNHIDuw2yyVj23GKkTNsNQy5p-iNQaa9KjlGEAm" alt="alt text" title="image Title" />
+<!-- <img src="https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNHIDuw2yyVj23GKkTNsNQy5p-iNQaa9KjlGEAm" alt="alt text" title="image Title" /> -->
 
 
 #### Dashboard Page
-![Alt text](https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNK6MVRQiJb4MRz6PP55ZDNp4L1FDixZp1aghLd"Login Page")
+![Alt text](https://photos.google.com/album/AF1QipO2krkVjbLQDXJz4LKhdI_Crb4U3Fl399I9zEm4/photo/AF1QipNK6MVRQiJb4MRz6PP55ZDNp4L1FDixZp1aghLd "Dashboard Page")
